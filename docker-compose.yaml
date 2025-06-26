@@ -29,7 +29,8 @@ services:
       DIFFICULTY: hard
       PVP: "false"
       MOTD: |
-        Minecraft
+        \u00a72        \u25b6 \u00a7a\u00a7lKrzysland\u00a72 edycja 2025 \u00a7a\u25c0\u00a7r
+        \u00a7b   BetterMC\u00a73 3 [Fabric] + \u00a7bDistant Horizons
       ONLINE_MODE: "false"
       MAX_PLAYERS: 10
     tty: true
