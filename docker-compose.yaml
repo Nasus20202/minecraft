@@ -1,0 +1,38 @@
+services:
+  mc-server:
+    image: itzg/minecraft-server:java21-graalvm
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+    environment:
+      EULA: "true"
+      TYPE: AUTO_CURSEFORGE
+      CF_SLUG: better-mc-fabric-bmc3
+      CF_API_KEY: ${CF_API_KEY}
+      CF_EXCLUDE_MODS: >-
+        mining-speed-tooltips
+        satisfying-buttons
+      CURSEFORGE_FILES: |
+        chunky-pregenerator
+        skinrestorer
+        c2me
+        servercore
+        distant-horizons
+      VIEW_DISTANCE: "16"
+      SIMULATION_DISTANCE: "8"
+      MEMORY: 6G
+      USE_MEOWICE_GRAALVM_FLAGS: "true"
+      ICON: https://yt3.googleusercontent.com/ytc/AIdro_kf1TkPhYY-Eenmd5l5DrISeGYfDl2pN7tMnXy5Br4x6w=s800-c-k-c0x00ffffff-no-rj
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: "false"
+      SNOOPER_ENABLED: "false"
+      MODE: survival
+      DIFFICULTY: hard
+      PVP: "false"
+      MOTD: |
+        Minecraft
+      ONLINE_MODE: "false"
+      MAX_PLAYERS: 10
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
