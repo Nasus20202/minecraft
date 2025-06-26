@@ -36,3 +36,17 @@ services:
     stdin_open: true
     ports:
       - "25565:25565"
+
+  website:
+    image: caddy:alpine
+    restart: unless-stopped
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./website/static:/srv:ro
+      - ./website/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+    ports:
+      - "80:80"
+      - "443:443"

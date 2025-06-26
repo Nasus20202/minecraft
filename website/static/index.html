@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krzyśland - Instrukcja Instalacji</title>
+    <link rel="icon" type="image/png" href="krzysland.png" />
+    <link rel="shortcut icon" type="image/png" href="krzysland.png" />
+    <link rel="apple-touch-icon" href="krzysland.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(
+          135deg,
+          #1e8449 0%,
+          #239b56 25%,
+          #138d75 50%,
+          #27ae60 75%,
+          #16a085 100%
+        );
+        background-size: 600% 600%;
+        animation: gradientShift 45s ease-in-out infinite;
+        min-height: 100vh;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        12.5% {
+          background-position: 15% 45%;
+        }
+        25% {
+          background-position: 30% 55%;
+        }
+        37.5% {
+          background-position: 45% 48%;
+        }
+        50% {
+          background-position: 60% 52%;
+        }
+        62.5% {
+          background-position: 75% 47%;
+        }
+        75% {
+          background-position: 90% 53%;
+        }
+        87.5% {
+          background-position: 100% 49%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        color: #2c3e50;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .subtitle {
+        color: #7f8c8d;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+
+      .launcher-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .launcher-card {
+        background: rgba(255, 255, 255, 0.85);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .launcher-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+      }
+
+      .launcher-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+        color: #2c3e50;
+      }
+
+      .launcher-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+        border-radius: 8px;
+      }
+
+      .steps {
+        list-style: none;
+        counter-reset: step-counter;
+      }
+
+      .step {
+        counter-increment: step-counter;
+        margin-bottom: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-left: 5px solid #27ae60;
+        border-radius: 10px;
+        position: relative;
+        transition: background 0.3s ease;
+      }
+
+      .step:hover {
+        background: #e8f4f8;
+      }
+
+      .step::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: -15px;
+        top: 20px;
+        width: 30px;
+        height: 30px;
+        background: #27ae60;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .step-title {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        font-size: 1.1em;
+      }
+
+      .step-description {
+        color: #5a6c7d;
+        line-height: 1.5;
+      }
+
+      .highlight {
+        background: #fff3cd;
+        border: 1px solid #ffeaa7;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+
+      .highlight-title {
+        font-weight: bold;
+        color: #856404;
+        margin-bottom: 8px;
+      }
+
+      .warning {
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+
+      .success {
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 20px 0;
+      }
+
+      .download-links {
+        background: rgba(255, 255, 255, 0.85);
+        padding: 30px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .download-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .download-button {
+        display: block;
+        padding: 15px 25px;
+        background: linear-gradient(45deg, #27ae60, #2ecc71);
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+      }
+
+      .download-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+      }
+
+      .crystal-launcher .download-button {
+        background: linear-gradient(45deg, #16a085, #1abc9c);
+        box-shadow: 0 5px 15px rgba(22, 160, 133, 0.3);
+      }
+
+      .crystal-launcher .download-button:hover {
+        box-shadow: 0 8px 25px rgba(22, 160, 133, 0.4);
+      }
+
+      .code-block {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        margin: 10px 0;
+        overflow-x: auto;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 20px;
+        color: #7f8c8d;
+      }
+
+      @media (max-width: 768px) {
+        .launcher-grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+
+        .container {
+          padding: 10px;
+        }
+
+        .launcher-card {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 20px;
+          "
+        >
+          <img
+            src="krzysland.png"
+            alt="Krzysland"
+            style="
+              width: 160px;
+              height: 160px;
+              border-radius: 15px;
+              margin-right: 20px;
+              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            "
+          />
+          <div>
+            <h1 style="margin: 0">Krzyśland</h1>
+            <h2 style="margin: 0">Better MC3 Fabric + Distant Horizons</h2>
+            <p class="subtitle">
+              Kompletna instrukcja instalacji dla Prism Launcher i Crystal
+              Launcher
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <div class="download-links">
+        <h2 style="text-align: center; margin-bottom: 20px; color: #2c3e50">
+          📥 Pobierz Launchery
+        </h2>
+        <div class="download-grid">
+          <a
+            href="https://prismlauncher.org/download/"
+            class="download-button"
+            target="_blank"
+            style="
+              background: linear-gradient(45deg, #e74c3c, #c0392b);
+              box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+            "
+          >
+            Pobierz Prism Launcher
+          </a>
+          <a
+            href="https://crystal-launcher.net/download"
+            class="download-button crystal-launcher"
+            target="_blank"
+            style="
+              background: linear-gradient(45deg, #9b59b6, #8e44ad);
+              box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);
+            "
+          >
+            Pobierz Crystal Launcher
+          </a>
+        </div>
+
+        <div style="margin-top: 30px">
+          <h3 style="text-align: center; margin-bottom: 15px; color: #2c3e50">
+            🔧 Ręczna Instalacja
+          </h3>
+          <div style="margin-bottom: 20px">
+            <h4
+              style="
+                text-align: center;
+                margin-bottom: 10px;
+                color: #34495e;
+                font-size: 1.1em;
+              "
+            >
+              📦 CurseForge
+            </h4>
+            <div class="download-grid">
+              <a
+                href="https://www.curseforge.com/minecraft/modpacks/better-mc-fabric-bmc3"
+                class="download-button"
+                target="_blank"
+                style="background: linear-gradient(45deg, #f39c12, #e67e22)"
+              >
+                Better MC3 Fabric na CurseForge
+              </a>
+              <a
+                href="https://www.curseforge.com/minecraft/mc-mods/distant-horizons"
+                class="download-button crystal-launcher"
+                target="_blank"
+                style="background: linear-gradient(45deg, #8e44ad, #9b59b6)"
+              >
+                Distant Horizons na CurseForge
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4
+              style="
+                text-align: center;
+                margin-bottom: 10px;
+                color: #34495e;
+                font-size: 1.1em;
+              "
+            >
+              🌿 Modrinth
+            </h4>
+            <div class="download-grid">
+              <a
+                href="https://modrinth.com/modpack/better-mc-fabric-bmc3"
+                class="download-button"
+                target="_blank"
+                style="background: linear-gradient(45deg, #1dd653, #00d4aa)"
+              >
+                Better MC3 Fabric na Modrinth
+              </a>
+              <a
+                href="https://modrinth.com/mod/distanthorizons"
+                class="download-button"
+                target="_blank"
+                style="background: linear-gradient(45deg, #17a2b8, #138496)"
+              >
+                Distant Horizons na Modrinth
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="launcher-grid">
+        <!-- Prism Launcher -->
+        <div class="launcher-card">
+          <div class="launcher-title">
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                background: #27ae60;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                margin-right: 15px;
+              "
+            >
+              P
+            </div>
+            Prism Launcher
+          </div>
+
+          <ol class="steps">
+            <li class="step">
+              <div class="step-title">Zainstaluj Prism Launcher</div>
+              <div class="step-description">
+                Pobierz i zainstaluj Prism Launcher z oficjalnej strony. Uruchom
+                aplikację i zaloguj się kontem Microsoft/Mojang.
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Stwórz nową instancję</div>
+              <div class="step-description">
+                Kliknij "Add Instance" → wybierz "Import from zip" lub
+                "CurseForge"
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Znajdź Better MC3</div>
+              <div class="step-description">
+                W wyszukiwarce wpisz "Better MC3 Fabric" i wybierz oficjalny
+                modpack
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Konfiguracja pamięci</div>
+              <div class="step-description">
+                W ustawieniach instancji ustaw minimum 4GB RAM (6-8GB zalecane)
+              </div>
+              <div class="code-block">-Xmx6G -Xms4G</div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Dodaj Distant Horizons</div>
+              <div class="step-description">
+                Po instalacji, wejdź w "Edit Instance" → "Mods" → "Download
+                mods" i wyszukaj "Distant Horizons"
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Uruchom grę</div>
+              <div class="step-description">
+                Kliknij "Launch" i ciesz się grą z rozszerzonymi horyzontami!
+              </div>
+            </li>
+          </ol>
+
+          <div class="highlight">
+            <div class="highlight-title">💡 Wskazówka</div>
+            Prism Launcher automatycznie pobierze wszystkie wymagane dependencje
+            dla Distant Horizons.
+          </div>
+        </div>
+
+        <!-- Crystal Launcher -->
+        <div class="launcher-card crystal-launcher">
+          <div class="launcher-title">
+            <div
+              style="
+                width: 40px;
+                height: 40px;
+                background: #16a085;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                margin-right: 15px;
+              "
+            >
+              C
+            </div>
+            Crystal Launcher
+          </div>
+
+          <ol class="steps">
+            <li class="step">
+              <div class="step-title">Zainstaluj Crystal Launcher</div>
+              <div class="step-description">
+                Pobierz i zainstaluj Crystal Launcher. Uruchom i zaloguj się na
+                swoje konto Minecraft.
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Przejdź do sekcji Modpacków</div>
+              <div class="step-description">
+                W głównym menu wybierz zakładkę "Modpacks" lub "Browse"
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Wyszukaj Better MC3</div>
+              <div class="step-description">
+                Użyj wyszukiwarki aby znaleźć "Better MC3 Fabric" i kliknij
+                "Install"
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Ustawienia pamięci</div>
+              <div class="step-description">
+                W ustawieniach profilu ustaw alokację pamięci na minimum 4GB
+              </div>
+              <div class="code-block">Memory: 4096MB - 8192MB</div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Pobierz Distant Horizons</div>
+              <div class="step-description">
+                Po instalacji modpacka, wejdź w zarządzanie modami i dodaj
+                "Distant Horizons" z CurseForge
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Sprawdź kompatybilność</div>
+              <div class="step-description">
+                Upewnij się, że wersja Distant Horizons jest kompatybilna z
+                wersją Fabric w modpacku
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-title">Start!</div>
+              <div class="step-description">
+                Uruchom instancję i ciesz się rozszerzonymi horyzontami!
+              </div>
+            </li>
+          </ol>
+
+          <div class="warning">
+            <strong>⚠️ Uwaga:</strong> Crystal Launcher może wymagać ręcznej
+            konfiguracji niektórych dependencji dla Distant Horizons.
+          </div>
+        </div>
+      </div>
+      <div
+        style="
+          background: rgba(255, 255, 255, 0.85);
+          padding: 30px;
+          border-radius: 20px;
+          margin-bottom: 30px;
+        "
+      >
+        <h2 style="color: #2c3e50; margin-bottom: 20px">
+          ⚙️ Dodatkowe Konfiguracje
+        </h2>
+
+        <div class="highlight">
+          <div class="highlight-title">🎯 Optymalizacja Distant Horizons</div>
+          <ul style="margin-left: 20px; color: #5a6c7d">
+            <li>Ustaw "Distant Horizons Render Distance" na 128-256 chunków</li>
+            <li>Włącz "Fog" aby uzyskać lepsze przejścia</li>
+            <li>Dostosuj "Quality" w zależności od wydajności komputera</li>
+          </ul>
+        </div>
+
+        <div class="success">
+          <strong>✅ Wymagania systemowe:</strong><br />
+          • Minecraft 1.21.1 z Fabric<br />
+          • Minimum 8GB RAM (zalecane 16GB)<br />
+          • Karta graficzna obsługująca OpenGL 4.6+<br />
+          • Java 17 lub nowsza
+        </div>
+      </div>
+
+      <footer>
+        <p>🎮 Miłej gry z Better MC3 Fabric i Distant Horizons! 🌅</p>
+        <p style="margin-top: 10px; font-size: 0.9em">
+          Instrukcja stworzona dla łatwej instalacji modpacka. W razie problemów
+          sprawdź oficjalne discord serwery modów.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+https://{$DOMAIN}, http://localhost {
+    root * /srv
+    
+    # Access logging
+    log {
+        output stdout
+        format json
+        level INFO
+    }
+    
+    # Redirect all subpages to root
+    @notroot {
+        not path /
+        not path /*.png
+        not path /*.jpg
+        not path /*.jpeg
+        not path /*.gif
+        not path /*.ico
+        not path /*.svg
+        not path /*.css
+        not path /*.js
+        not path /*.woff
+        not path /*.woff2
+    }
+    redir @notroot / permanent
+    
+    file_server
+    encode gzip
+    
+    # Caddy will automatically get SSL certificate from Let's Encrypt
+    header {
+        Strict-Transport-Security max-age=31536000;
+        X-Frame-Options DENY
+        X-Content-Type-Options nosniff
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy strict-origin-when-cross-origin
+    }
+    
+    @static {
+        file
+        path *.css *.js *.png *.jpg *.jpeg *.gif *.ico *.svg *.woff *.woff2
+    }
+    header @static Cache-Control "public, max-age=31536000"
+}
